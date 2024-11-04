@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+.chat-container {
+  height: 380px; /* Chiều cao của khung chat (có thể điều chỉnh) */
+  overflow-y: auto; /* Cho phép cuộn khi nội dung vượt quá chiều cao */
+  border-radius: 8px; /* Bo góc khung chat */
+  padding: 2px; /* Khoảng cách bên trong khung chat */
+  background-color: transparent; /* Màu nền của khung chat */
+  scrollbar-width: thin; /* Firefox: Ẩn thanh cuộn */
+  scrollbar-color: transparent transparent; /* Firefox: Màu thanh cuộn */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Chrome, Safari and Opera */
+.chat-container::-webkit-scrollbar {
+  width: 8px; /* Chiều rộng thanh cuộn */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.chat-container::-webkit-scrollbar-track {
+  background: transparent; /* Màu nền của track */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.chat-container::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Màu của thanh cuộn */
+  border-radius: 10px; /* Tạo bo tròn cho thanh cuộn */
+}
+
+/* Hiện thanh cuộn khi hover */
+.chat-container:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1);
+}
+
+.chat-container:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Căn chỉnh các tin nhắn */
+.chat-message {
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Cách điệu tin nhắn của người dùng */
+.chat-message.user {
+  background-color: #93c5fd;
   color: white;
+  align-self: flex-end;
+  margin-right: 8px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Cách điệu tin nhắn của bot */
+.chat-message.bot {
+  background-color: #f5f3fa;
+  color: black;
+  align-self: flex-start;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+//loader cho bot
+.loader-avatar {
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(37, 99, 235, 0.8);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    background-color: rgba(37, 99, 235, 1);
+  }
+  100% {
+    background-color: rgba(37, 99, 235, 0.8);
   }
 }
